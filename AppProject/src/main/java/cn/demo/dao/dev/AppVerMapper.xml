@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.demo.dao.dev.AppVerMapper">
+	
+	<!-- 查询App版本信息列表 -->
+	<resultMap type="App_version" id="appVerAndInfo">
+		<id column="id" property="id"/>
+		<result column="softwareName" property="softwareName"/>
+		<result column="typeName" property="typeName"/>
+		<result column="devCode" property="createdByName"/>
+	</resultMap>
+	<select id="getAppVerList" resultMap="appVerAndInfo">
+		SELECT v.id,i.`softwareName`,v.versionNo,v.versionSize,d.typeName,v.apkFileName,v.creationDate,u.devCode
+		FROM app_info i,app_version v,data_dictinary d,dev_user u
+		WHERE v.appId = i.`id` AND v.publishStatus=d.id AND v.createdBy=u.id
+	</select>
+	<!-- 增加App版本信息 -->
+	<insert id="addAppVer" parameterType="App_version">
+		INSERT INTO app_version(versionNo,versionSize,publishStatus,versionInfo,apkFileName)
+		VALUES(#{versionNo},#{versionSize},#{publishStatus},#{versionInfo},#{apkFileName})
+	</insert>
+	<!-- 修改App版本信息 -->
+	<update id="updateAppVer" parameterType="App_version">
+		SELECT v.versionNo,v.versionSize,v.publishStatus,v.versionInfo,v.apkFileName  FROM app_info i,app_version v
+		WHERE i.versionId = v.`id` AND i.`id`=#{id}
+	</update>
+</mapper>

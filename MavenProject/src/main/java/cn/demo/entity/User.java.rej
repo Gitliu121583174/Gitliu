@@ -1,0 +1,7 @@
+diff a/MavenProject/src/main/java/cn/demo/entity/User.java b/MavenProject/src/main/java/cn/demo/entity/User.java	(rejected hunks)
+@@ -0,0 +1,5 @@
++package cn.demo.entity;
++
++public class User {
++
++}

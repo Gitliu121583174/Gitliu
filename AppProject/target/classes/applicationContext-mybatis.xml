@@ -54,6 +54,6 @@
 	</bean>
 	<!--配置MapperScannerConfigurer  -->
 	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
-		<property name="basePackage" value="cn.demo.dao"></property>
+		<property name="basePackage" value="cn.demo.dao.dev"></property>
 	</bean>
 </beans>
